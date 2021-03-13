@@ -1,0 +1,40 @@
+
+
+h3{
+	padding-top: 2%;
+}
+
+li.nav-item{
+	padding-top: 5%;
+}
+
+.active a{
+	background-color: #5CB85C;
+}
+
+div.row{
+	margin: 5% 5%;
+}
+
+
+
+body{
+	
+	background-color: black;
+}
+
+footer{
+	bottom: 0;
+	padding-top: 60px;
+}
+
+footer p{
+	text-align: center;
+}
+h2#titulo {
+    color: red;
+    font-size: xx-large;
+    font-family: 'Times New Roman', Times, serif;
+	font-style: italic;
+
+}

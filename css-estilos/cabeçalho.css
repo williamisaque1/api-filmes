@@ -1,0 +1,47 @@
+body{
+    background-color: black;
+    width: 100%;
+    height: 100%;
+}
+h2#titulo {
+    color: red;
+    font-size: xx-large;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+}
+label{
+    color: white;
+    font-weight: bolder;
+   font-size: x-large;
+   margin-right: 15px;
+
+}
+input#filme{
+margin-right: 50px;
+width: 300px;
+
+}
+select#combobox{
+   width: 141px;
+   background-color: yellow;
+  
+}
+div#menus{
+    right: 650px;
+    float: left;
+    position: absolute;
+    size: 50px;
+}
+h5#mes{
+    padding-top: 35px;
+margin-bottom: 0px;
+font-size: larger;
+
+}
+div#cabecalho div#menus span#botao button#botaao{
+margin-left: 25px;
+}
+div#cabecalho div#menus span#botao button#botaao:hover{
+    font-size: larger;
+    margin-left: 25px;
+    }
