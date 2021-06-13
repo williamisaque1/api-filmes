@@ -19,10 +19,8 @@ function voltar() {
 
 function buscarFilmes(filme) {
   console.log("filme escolhido " + filme);
-  axios
-    .get("https://projetinhoback.herokuapp.com/comentarios")
-    .then(function (response) {
-      /* console.log(
+
+  /* console.log(
         "*****************testando" +
           response.data[0]["usuario"] +
           "|" +
@@ -30,7 +28,7 @@ function buscarFilmes(filme) {
           "--" +
           response.data.length
       );*/
-    });
+
   axios
     .get(
       "https://api.themoviedb.org/3/search/movie?api_key=5417af578f487448df0d4932bc0cc1a5&query=" +
@@ -106,13 +104,34 @@ function buscarFilmes(filme) {
 }
 
 function info(id) {
-  sessionStorage.setItem("idFilme", id);
+  sessionStorage.setItem("idmovie", id);
   window.location = "detalhes.html";
-  return false;
+}
+function video() {
+  var aux = "";
+  axios
+    .get(
+      "http://api.themoviedb.org/3/movie/" +
+        sessionStorage.getItem("idmovie") +
+        "/videos?api_key=5417af578f487448df0d4932bc0cc1a5"
+    )
+    .then(function (response) {
+      console.log("consegui ????" + response.data.results["0"].key);
+
+      aux =
+        '<iframe id="player" type="text/html"width="700" height="400"  style = "margin-left: 18px ;" src=http://www.youtube.com/embed/ ' +
+        response.data.results["0"].key +
+        "?enablejsapi=1&origin=https://www.youtube.com/watch?v=" +
+        response.data.results["0"].key +
+        'frameborder="0"></iframe>';
+    });
+
+  return aux;
 }
 
 function exibirFilme() {
-  var idFilme = sessionStorage.getItem("idFilme");
+  var idFilme = sessionStorage.getItem("idmovie");
+
   axios
     .all([
       axios.get(
@@ -125,9 +144,16 @@ function exibirFilme() {
           idFilme +
           "?api_key=5417af578f487448df0d4932bc0cc1a5"
       ),
+      axios.get(
+        "http://api.themoviedb.org/3/movie/" +
+          sessionStorage.getItem("idmovie") +
+          "/videos?api_key=5417af578f487448df0d4932bc0cc1a5"
+      ),
     ])
     .then(
-      axios.spread(function (ResponsePortugues, ResponseIngles) {
+      axios.spread(function (ResponsePortugues, ResponseIngles, response) {
+        console.log("mmmmmmmm  mm" + sessionStorage.getItem("idmovie"));
+        console.log("dsaajhjj" + video());
         if (
           ResponsePortugues.data.overview == "" &&
           !ResponseIngles.data.overview == ""
@@ -163,6 +189,12 @@ function exibirFilme() {
             '<li class="list-group-item" style="background-color: black ; color:red;">Sinopse: ' +
             filmeDetalhado.data.overview +
             "</li>";
+          mostraDetalhes +=
+            '<iframe id="player" type="text/html"width="450" height="250"  style = "margin-left: 18px ;" src=http://www.youtube.com/embed/' +
+            response.data.results["0"].key +
+            "?enablejsapi=1&origin=https://www.youtube.com/watch?v=" +
+            response.data.results["0"].key +
+            'frameborder="0"></iframe>';
           mostraDetalhes += "</div>";
           mostraDetalhes += "</div>";
           document.getElementById("detalhes").innerHTML = mostraDetalhes;
@@ -197,6 +229,13 @@ function exibirFilme() {
             '<li class="list-group-item" style="background-color: black ; color:red;">Sinopse: ' +
             filmeDetalhado.data.overview +
             "</li>";
+
+          mostraDetalhes +=
+            '<iframe id="player" type="text/html"width="450" height="250"  style = "margin-left: 18px ;" src=http://www.youtube.com/embed/' +
+            response.data.results["0"].key +
+            "?enablejsapi=1&origin=https://www.youtube.com/watch?v=" +
+            response.data.results["0"].key +
+            'frameborder="0"></iframe>';
           mostraDetalhes += "</div>";
           mostraDetalhes += "</div>";
           document.getElementById("detalhes").innerHTML = mostraDetalhes;
@@ -231,6 +270,12 @@ function exibirFilme() {
             '<li class="list-group-item" style="background-color: black ; color:red;">Sinopse: ' +
             filmeDetalhado.data.overview +
             "</li>";
+          mostraDetalhes +=
+            '<iframe id="player" type="text/html"width="450" height="250"  style = "margin-left: 18px ;" src=http://www.youtube.com/embed/' +
+            response.data.results["0"].key +
+            "?enablejsapi=1&origin=https://www.youtube.com/watch?v= " +
+            response.data.results["0"].key +
+            'frameborder="0"></iframe>';
           mostraDetalhes += "</div>";
           mostraDetalhes += "</div>";
           document.getElementById("detalhes").innerHTML = mostraDetalhes;

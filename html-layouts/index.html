@@ -50,7 +50,9 @@
     <script type="text/javascript" src="/js-dinâmica/main.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-      window.onload = buscarFilmes(sessionStorage.idfilme);
+      if (sessionStorage.idfilme !== undefined) {
+        window.onload = buscarFilmes(sessionStorage.idfilme);
+      }
     </script>
   </body>
 </html>
