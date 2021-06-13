@@ -284,10 +284,17 @@ function exibirFilme() {
                 '<li class="list-group-item" style="background-color: black ; color:red;">Título: ' +
                 filmeDetalhado.data.original_title +
                 "</li>";
-              mostraDetalhes +=
-                '<li class="list-group-item" style="background-color: black ; color:red;">Gênero: ' +
-                filmeDetalhado.data.genres[0].name +
-                "</li>";
+              console.log(
+                "entrou no else 2" + "" + filmeDetalhado.data.genres[0]
+              );
+              if (filmeDetalhado.data.genres[0] !== undefined) {
+                console.log("entrou no else 2" + filmeDetalhado.data.genres[0]);
+                mostraDetalhes +=
+                  '<li class="list-group-item" style="background-color: black ; color:red;">Gênero: ' +
+                  filmeDetalhado.data.genres[0].name +
+                  "</li>";
+              }
+
               mostraDetalhes += "</div>";
               mostraDetalhes += '<div class="col-md-6">';
               mostraDetalhes +=
@@ -297,7 +304,7 @@ function exibirFilme() {
 
               mostraDetalhes +=
                 ' <img style="width: 450px ;  height=250 ; margin-left: 18px"  src="../img-outros elementos/erro video.jpg" />';
-
+              console.log("entrou no if");
               mostraDetalhes += "</div>";
               mostraDetalhes += "</div>";
               document.getElementById("detalhes").innerHTML = mostraDetalhes;
@@ -324,10 +331,14 @@ function exibirFilme() {
                 '<li class="list-group-item" style="background-color: black ; color:red;">Título: ' +
                 filmeDetalhado.data.original_title +
                 "</li>";
-              mostraDetalhes +=
-                '<li class="list-group-item" style="background-color: black ; color:red;">Gênero: ' +
-                filmeDetalhado.data.genres[0].name +
-                "</li>";
+              console.log("entrou no else 1");
+              if (filmeDetalhado.data.genres[0] !== undefined) {
+                console.log("entrou no else 2");
+                mostraDetalhes +=
+                  '<li class="list-group-item" style="background-color: black ; color:red;">Gênero: ' +
+                  filmeDetalhado.data.genres[0].name +
+                  "</li>";
+              }
               mostraDetalhes += "</div>";
               mostraDetalhes += '<div class="col-md-6">';
               mostraDetalhes +=
