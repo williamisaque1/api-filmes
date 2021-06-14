@@ -17,9 +17,95 @@ function info(id) {
   sessionStorage.setItem("idmovie", id);
   window.location = "detalhes.html";
 }
+function lancamentos() {
+  axios
+    .get(
+      "https://api.themoviedb.org/3/movie/upcoming?api_key=5417af578f487448df0d4932bc0cc1a5&region=BR"
+    )
+    .then((response) => {
+      var mostraLancamentos = "";
+      var i = 0;
+      var aux = "";
+      mostraLancamentos +=
+        "<div>" +
+        "<h1 '> LANÇAMENTOS <h1>" +
+        '<div data-interval="1500" id="carouselSite" class="carousel slide" data-ride="carousel">' +
+        '<ol class="carousel-indicators">' +
+        '<li data-target="#carouselSite" data-slide-to="0" class="active"></li>' +
+        '<li data-target="#carouselSite" data-slide-to="1"></li>' +
+        '<li data-target="#carouselSite" data-slide-to="3"></li>' +
+        '<li data-target="#carouselSite" data-slide-to="4"></li>' +
+        '<li data-target="#carouselSite" data-slide-to="5"></li>' +
+        '<li data-target="#carouselSite" data-slide-to="6"></li>' +
+        '<li data-target="#carouselSite" data-slide-to="7"></li>' +
+        "</ol>" +
+        '<div class="carousel-inner">';
+      mostraLancamentos +=
+        '<div class="carousel-item  active">' +
+        '<img class="img-fluid d-block" width="700px" src="https://image.tmdb.org/t/p/w300/' +
+        response.data.results[i].backdrop_path +
+        '"/>' +
+        ' <div class="carousel-caption">' +
+        "<h1 style ='color:red ; text-shadow: 10px 10px 20px #87F , 10px 10px 20px #0000FF," +
+        " 0 0 20px #87F" +
+        ";  font-weight: bolder'>" +
+        response.data.results[i].original_title +
+        "</h1>" +
+        "</div>" +
+        "</div>";
+      aux += response.data.results[i].original_title;
+      for (i = 1; i < response.data.results.length; i++) {
+        if (response.data.results[i].backdrop_path !== null) {
+          mostraLancamentos +=
+            '<div class="carousel-item  ">' +
+            '<img class="img-fluid d-block" width="700px" src="https://image.tmdb.org/t/p/w300/' +
+            response.data.results[i].backdrop_path +
+            '"/>' +
+            ' <div class="carousel-caption">' +
+            "<h1 style ='color:red ; text-shadow: 10px 10px 20px #87F , 10px 10px 20px #0000FF," +
+            " 0 0 20px #87F" +
+            "' ;  font-weight: bolder>" +
+            response.data.results[i].original_title +
+            "</h1>" +
+            " </div>" +
+            "</div>";
+
+          aux += "\n" + response.data.results[i].original_title;
+        }
+      }
+      console.log("titulo " + aux);
+      mostraLancamentos +=
+        "</div>" +
+        '<a class="carousel-control-prev"  href="#carouselSite" role="button" data-slide="prev">' +
+        '<span class="carousel-control-prev-icon" > </span>' +
+        '<span class="sr-only"> anterior </span>' +
+        "</a>" +
+        '<a class="carousel-control-next"  href="#carouselSite" role="button" data-slide="next">' +
+        '<span class="carousel-control-next-icon">  </span>' +
+        '<span class="sr-only"> proximo </span>' +
+        "</a>" +
+        "</div>" +
+        "</div>";
+      document.getElementById("c2").innerHTML = mostraLancamentos;
+
+      /* mostraLancamentos +=
+        '<div class="col-md-4"> <img class="img-thumbnail" width="450px"src="https://image.tmdb.org/t/p/w300/' +
+        response.data.results["0"].backdrop_path +
+        '"/> </div>';*/
+
+      console.log(
+        mostraLancamentos +
+          "lançamentos " +
+          "  " +
+          response.data.results.length +
+          a
+      );
+    });
+}
 
 function buscarFilmes(filme) {
   // console.log("filme escolhido " + filme);
+
   axios
     .get(
       "https://api.themoviedb.org/3/search/movie?api_key=5417af578f487448df0d4932bc0cc1a5&query=" +
