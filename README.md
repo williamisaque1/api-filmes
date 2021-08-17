@@ -5,7 +5,7 @@ backend em node js e banco de dados relacional postgres remoto.
 adicionado session storage para salvar o filmes pesquisado pelo usr e filmes lançamentos
 Para poder iniciar o projeto recomendo o uso o editor vs code com a extensão live server para poder carregar os arquivos css e html de pastas diferentes.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
-como executar
+# como executar ?
 para executar e preciso usar o editor visual studio code e instalar a extenção live server.
 após a instalação do live server, na tela do vs code apertar as teclas ctrl + p e escolher a opção "live server: open with live server".
 
